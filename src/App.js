@@ -12,32 +12,33 @@ import Responsaveis from './Views/Responsaveis';
 
 class App extends React.Component {
    
-   state = {variavel: 0,}
+   state = {pagina: 0,}
 
+   // Construção da página que será retornada como View.
    render() {
-      const {variavel} = this.state;
+      const {pagina} = this.state;
 
-      if (variavel === 0) {
+      if (pagina === 0) {
          return (
             <body>
                <header>
                   <Navbar bg="primary" variant="dark">
                      <Container>
-                        <Navbar.Brand onClick={ ()=>this.setState({ variavel : 0 }) }>Jardim Escola</Navbar.Brand>
+                        <Navbar.Brand onClick={ ()=>this.setState({ pagina : 0 }) }>Jardim Escola</Navbar.Brand>
                         <Nav className="me-auto">
-                           <Nav.Link onClick={ ()=>this.setState({ variavel : 1 }) }>Alunos</Nav.Link>
-                           <Nav.Link onClick={ ()=>this.setState({ variavel : 2 }) }>Responsaveis</Nav.Link>
+                           <Nav.Link onClick={ ()=>this.setState({ pagina : 1 }) }>Alunos</Nav.Link>
+                           <Nav.Link onClick={ ()=>this.setState({ pagina : 2 }) }>Responsaveis</Nav.Link>
                         </Nav>
                      </Container>
                   </Navbar>
                </header>
 
                <div classname="Container">
-                  <Inicio />
+                   <Inicio />
                </div>
 
                <footer>
-                  <div className='text-center p-2 fixed-bottom'>
+                  <div className='border-top text-center p-2 fixed-bottom'>
                      <p>
                         Projeto desenvolvido no âmbito da U.C. de Desenvolvimento Web de Licenciatura em Engenharia Informática. Ano letivo 2022-23
                      </p>
@@ -45,16 +46,16 @@ class App extends React.Component {
                </footer>
             </body>
          )
-      } else if (variavel === 1) {
+      } else if (pagina === 1) {
          return (
             <body>
                <header>
                   <Navbar bg="primary" variant="dark">
                      <Container>
-                        <Navbar.Brand onClick={ ()=>this.setState({ variavel : 0 }) }>Jardim Escola</Navbar.Brand>
+                        <Navbar.Brand onClick={ ()=>this.setState({ pagina : 0 }) }>Jardim Escola</Navbar.Brand>
                         <Nav className="me-auto">
-                           <Nav.Link onClick={ ()=>this.setState({ variavel : 1 }) }>Alunos</Nav.Link>
-                           <Nav.Link onClick={ ()=>this.setState({ variavel : 2 }) }>Responsaveis</Nav.Link>
+                           <Nav.Link onClick={ ()=>this.setState({ pagina : 1 }) }>Alunos</Nav.Link>
+                           <Nav.Link onClick={ ()=>this.setState({ pagina : 2 }) }>Responsaveis</Nav.Link>
                         </Nav>
                      </Container>
                   </Navbar>
@@ -65,7 +66,7 @@ class App extends React.Component {
                </div>
 
                <footer>
-                  <div className='text-center p-2 fixed-bottom'>
+                  <div className='border-top text-center p-2 fixed-bottom'>
                      <p>
                         Projeto desenvolvido no âmbito da U.C. de Desenvolvimento Web de Licenciatura em Engenharia Informática. Ano letivo 2022-23
                      </p>
@@ -73,16 +74,16 @@ class App extends React.Component {
                </footer>
             </body>
          )
-      } else if (variavel === 2) {
+      } else if (pagina === 2) {
          return (
             <body>
                <header>
                   <Navbar bg="primary" variant="dark">
                      <Container>
-                        <Navbar.Brand onClick={ ()=>this.setState({ variavel : 0 }) }>Jardim Escola</Navbar.Brand>
+                        <Navbar.Brand onClick={ ()=>this.setState({ pagina : 0 }) }>Jardim Escola</Navbar.Brand>
                         <Nav className="me-auto">
-                           <Nav.Link onClick={ ()=>this.setState({ variavel : 1 }) }>Alunos</Nav.Link>
-                           <Nav.Link onClick={ ()=>this.setState({ variavel : 2 }) }>Responsaveis</Nav.Link>
+                           <Nav.Link onClick={ ()=>this.setState({ pagina : 1 }) }>Alunos</Nav.Link>
+                           <Nav.Link onClick={ ()=>this.setState({ pagina : 2 }) }>Responsaveis</Nav.Link>
                         </Nav>
                      </Container>
                   </Navbar>
@@ -93,7 +94,7 @@ class App extends React.Component {
                </div>
 
                <footer>
-                  <div className='text-center p-2 fixed-bottom'>
+                  <div className='border-top text-center p-2 fixed-bottom'>
                      <p>
                         Projeto desenvolvido no âmbito da U.C. de Desenvolvimento Web de Licenciatura em Engenharia Informática. Ano letivo 2022-23
                      </p>
@@ -102,9 +103,8 @@ class App extends React.Component {
             </body>
          )
       }
-
-      
    }
+
 }
 
 export default App;
