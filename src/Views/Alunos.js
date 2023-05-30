@@ -4,7 +4,7 @@ import React from 'react';
 // Função que recebe os dados dos alunos através da API.
 async function getAlunos() {
    // Fazer a conexão à API.
-   let dadosAlunos = await fetch("api/AlunosApi");
+   let dadosAlunos = await fetch("api/Alunos");
 
    // Verificar se os dados foram recebido com sucesso.
    if (!dadosAlunos.ok) {
@@ -42,9 +42,16 @@ class Alunos extends React.Component {
 
    // Construção da página que será retornada como View.
    render() {
+      let tabela = [];
+      this.state.alunos.forEach((aluno)=>{
+         tabela.push(<p>{aluno.nome}</p>);
+      });
 
       return(
-         <h2>Página Alunos</h2>
+         <>
+            <h2>Página Alunos</h2>
+            {tabela}
+         </>
       );
 
    }
