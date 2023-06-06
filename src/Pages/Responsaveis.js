@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Classe Responsaveis.
+ * Classe src/Pages/Responsaveis.js
  */
 class Responsaveis extends React.Component {
 
@@ -9,7 +9,9 @@ class Responsaveis extends React.Component {
    render() {
 
       return(
-         <h2>Página Responsaveis</h2>
+         <>
+            
+         </>
       );
 
    }
