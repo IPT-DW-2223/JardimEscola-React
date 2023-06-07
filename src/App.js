@@ -11,6 +11,7 @@ import Inicio from './Pages/Inicio';
 import Layout from './Pages/Layout';
 import NoPage from './Pages/NoPage';
 import Responsaveis from './Pages/Responsaveis';
+import Login from './Pages/Login';
 
 export default function App() {
    return (
@@ -20,6 +21,7 @@ export default function App() {
            <Route index element={<Inicio />} />
            <Route path="alunos" element={<Alunos />} />
            <Route path="responsaveis" element={<Responsaveis />} />
+           <Route path="login" element={<Login />} />
            <Route path="*" element={<NoPage />} />
          </Route>
        </Routes>

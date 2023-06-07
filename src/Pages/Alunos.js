@@ -2,6 +2,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Image from 'react-bootstrap/Image';
+
 // Importar a API.
 import {getAlunos} from '../Api.js';
 
@@ -65,8 +69,18 @@ class Alunos extends React.Component {
          <>
          <div className='container mx-auto p-3'>
             
-            <h3>LISTA DE ALUNOS</h3>
-            <hr style={{ color:"green" }}></hr> 
+            <h3 style={{ color:"green" }}><strong>LISTA DE ALUNOS</strong></h3>
+            <hr style={{ color:"green" }}></hr>
+            <InputGroup className="mb-3">
+               <InputGroup.Text id="procurarAluno">
+                  <Image src="src\Icons\procurar.png" rounded />
+               </InputGroup.Text>
+               <Form.Control
+                  placeholder="Procurar por nome do aluno..."
+                  aria-label="Procurar por nome do aluno..."
+                  aria-describedby="procurarAluno"
+               />
+            </InputGroup> 
             <Table striped bordered hover>
                {tabelaHeader}
                <tbody>
@@ -74,7 +88,7 @@ class Alunos extends React.Component {
                </tbody>
             </Table>
             <hr style={{ color:"green" }}></hr>
-
+            
          </div>
          </>
       );

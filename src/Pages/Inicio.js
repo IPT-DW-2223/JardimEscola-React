@@ -14,10 +14,11 @@ class Inicio extends React.Component {
          <>
          <div className='container mx-auto p-3'>
 
-            <Image width={500} height={300} src="./Icons/ipt-logo.png" fluid />
+            <Image width={500} height={300} src="src\Icons\ipt-logo.png" fluid />
 
             <hr style={{ color:"green" }}></hr> 
 
+            <h5 style={{ color:"green" }}><strong>Grupo de alunos:</strong></h5>
             <div className='row'>
                <div className='col'><h4><strong style={{ color:"green" }}>André Sá</strong> (<i>aluno21296@ipt.pt</i>)</h4></div>
                <div className='col'><h4><strong style={{ color:"green" }}>Bárbara Barbosa</strong> (<i>aluno19493@ipt.pt</i>)</h4></div>
