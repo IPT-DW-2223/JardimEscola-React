@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Image from 'react-bootstrap/Image';
 
+
 // Importar a API.
 import {getAlunos} from '../Api.js';
 
@@ -48,6 +49,7 @@ class Alunos extends React.Component {
                <th>Data de Nascimento</th>
                <th>NIF</th>
                <th>Responsável</th>
+               <th>Avaliação</th>
             </tr>
          </thead>
       );
@@ -60,6 +62,7 @@ class Alunos extends React.Component {
                <td>{aluno.dataNascimento}</td>
                <td>{aluno.nif}</td>
                <td>{aluno.responsavel}</td>
+               <td>{aluno.avaliacao}</td>
             </tr>
          );
       });

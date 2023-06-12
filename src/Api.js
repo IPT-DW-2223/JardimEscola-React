@@ -5,7 +5,7 @@
  */
 export async function getAlunos() {
    // Fazer a conexão à API.
-   let dadosAlunos = await fetch("api/Alunos/Lista");
+   let dadosAlunos = await fetch("api/Alunos/Lista", {credentials: "include"});
 
    // Verificar se os dados foram recebidos com sucesso.
    if (!dadosAlunos.ok) {
@@ -17,19 +17,26 @@ export async function getAlunos() {
 }
 
 /**
- * Função que recebe os dados dos responsáveis através da API.
- * @returns Lista de responsáveis.
+ * Função para validar o login no servidor através da API.
  */
-export async function getResponsaveis() {
-   // Fazer a conexão à API.
-   let dadosResponsaveis = await fetch("api/Responsaveis/Lista");
-   
-   // Verificar se os dados foram recebidos com sucesso.
-   if (!dadosResponsaveis) {
-      throw new Error("Algo correu mal ao tentar aceder aos dados dos responsáveis. Código HTTP: ", dadosResponsaveis.state);
+export async function login(username, password) {
+
+   try {
+      let resposta = await fetch("api/Login", {
+         method: "POST",
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         credentials: "include",
+         body: JSON.stringify({
+            username: username,
+            password: password
+         })
+      });
+      let token = resposta.data;
+      console.log(token);
+   } catch (error) {
+      console.log("Erro ao validar login.");
    }
 
-   // Retornar os dados coletados em formato JSON.
-   return await dadosResponsaveis.json();
 }
-

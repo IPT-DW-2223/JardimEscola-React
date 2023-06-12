@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+// Importar a API.
+import {login} from '../Api.js';
 
 /**
  * Classe src/Pages/Login.js
@@ -34,10 +37,18 @@ class Login extends React.Component {
 
    // Evento que é executado quando..
    //    clicamos no botão de login.
-   handleSubmit(event) {
+   async handleSubmit(event) {
       event.preventDefault();
 
-      /** Fazer a lógica para a requisição HTTP para o servidor via API */
+      const { email, password } = this.state;
+      
+      try {
+         const resposta = await login(email, password);
+         console.log("Resposta: " + resposta);
+         window.location = "/Alunos";
+      } catch (error) {
+         console.error("Erro ao fazer login:", error.menssage);
+      }
 
       // Limpar os campos de email e senha após a submissão.
       this.setState({ email: '', password: '' });
@@ -74,7 +85,7 @@ class Login extends React.Component {
                                  type="password"
                                  id="password"
                                  className="form-control"
-                                 value={password}
+                                 value={password} 
                                  onChange={this.handlePasswordChange}
                                  required
                                  />
