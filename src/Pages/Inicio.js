@@ -14,7 +14,7 @@ class Inicio extends React.Component {
          <>
          <div className='container mx-auto p-3'>
 
-            <Image width={500} height={300} src="src\Icons\ipt-logo.png" fluid />
+            <Image width={500} height={300} src="Icons/ipt-logo.png" />
 
             <hr style={{ color:"green" }}></hr> 
 
