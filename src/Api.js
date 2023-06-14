@@ -17,6 +17,27 @@ export async function getAlunos() {
 }
 
 /**
+ * Função que envia a avaliação de um aluno para a API.
+ * @param {*} alunoId 
+ * @param {*} avaliacao 
+ */
+export async function avaliarAluno(alunoId, avaliacao) {
+   try {
+      let resposta = await fetch(`api/Alunos/Avaliar?alunoId=${alunoId}`, {
+         method: "POST",
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         credentials: "include",
+         body: JSON.stringify(avaliacao)
+      });
+      console.log("aluno: " + alunoId + " // avaliacao: " + avaliacao);
+   } catch (erro) {
+      console.log("Erro ao enviar a avaliação.");
+   }
+}
+
+/**
  * Função para validar o login no servidor através da API.
  */
 export async function login(username, password) {

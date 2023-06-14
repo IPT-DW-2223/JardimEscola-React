@@ -5,18 +5,23 @@ import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 
 
 // Importar a API.
-import {getAlunos} from '../Api.js';
+import {getAlunos, avaliarAluno} from '../Api.js';
 
 /**
  * Classe src/Pages/Alunos.js
  */
 class Alunos extends React.Component {
 
-   state = {alunos: [],}
-   
+   state = {
+      alunos: [],             // Lista de alunos vinda da base de dados via API.
+      avaliacao: '',          // Valor selecionado na combobox das avaliações.
+      alunoSelecionado: null  // Guarda o Id do aluno que queremos avaliar.
+   }
+
    // Função que é executada quando este componente é iniciado.
    componentDidMount() {
       this.carregarDadosAlunos();
@@ -35,6 +40,15 @@ class Alunos extends React.Component {
       }
    }
 
+   async handleAvaliarAluno(alunoId) {
+      try {
+         const { avaliacao } = this.state;
+         await avaliarAluno(alunoId, avaliacao);
+      } catch (error) {
+         console.error('Erro ao enviar a avaliação do aluno.', error);
+      }
+   }
+
    // Construção da página que será retornada como View.
    render() {
 
@@ -45,11 +59,13 @@ class Alunos extends React.Component {
       tabelaHeader.push(
          <thead>
             <tr>
+               <th>Id</th>
                <th>Nome</th>
                <th>Data de Nascimento</th>
                <th>NIF</th>
                <th>Responsável</th>
                <th>Avaliação</th>
+               <th>Opções</th>
             </tr>
          </thead>
       );
@@ -58,11 +74,23 @@ class Alunos extends React.Component {
       this.state.alunos.forEach((aluno)=>{
          tabelaBody.push(
             <tr key={aluno.id}>
+               <td>{aluno.id}</td>
                <td>{aluno.nome}</td>
                <td>{aluno.dataNascimento}</td>
                <td>{aluno.nif}</td>
                <td>{aluno.responsavel}</td>
                <td>{aluno.avaliacao}</td>
+               <td>
+                  <Form.Control as="select"
+                  onChange={(e) => this.setState({ avaliacao: e.target.value })}>
+                     <option>Não revela progressos</option>
+                     <option>Revela progressos</option>
+                  </Form.Control>
+                  <br></br>
+                  <Button variant="primary" onClick={() => this.handleAvaliarAluno(aluno.id)}>
+                     Avaliar
+                  </Button>
+               </td>
             </tr>
          );
       });
@@ -76,7 +104,7 @@ class Alunos extends React.Component {
             <hr style={{ color:"green" }}></hr>
             <InputGroup className="mb-3">
                <InputGroup.Text id="procurarAluno">
-                  <Image src="src\Icons\procurar.png" rounded />
+                  <Image src="Icons\procurar.png" width={'30px'} rounded />
                </InputGroup.Text>
                <Form.Control
                   placeholder="Procurar por nome do aluno..."
@@ -91,7 +119,6 @@ class Alunos extends React.Component {
                </tbody>
             </Table>
             <hr style={{ color:"green" }}></hr>
-            
          </div>
          </>
       );
