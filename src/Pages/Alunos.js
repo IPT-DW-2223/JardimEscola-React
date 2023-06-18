@@ -19,7 +19,8 @@ class Alunos extends React.Component {
    state = {
       alunos: [],             // Lista de alunos vinda da base de dados via API.
       avaliacao: '',          // Valor selecionado na combobox das avaliações.
-      alunoSelecionado: null  // Guarda o Id do aluno que queremos avaliar.
+      alunoSelecionado: null, // Guarda o Id do aluno que queremos avaliar.
+      filtroNome: ''          // Guarda o valor que está na barra de pesquisa.
    }
 
    // Função que é executada quando este componente é iniciado.
@@ -71,29 +72,35 @@ class Alunos extends React.Component {
       );
       
       // Constrói o body da tabela Alunos.
-      this.state.alunos.forEach((aluno)=>{
-         tabelaBody.push(
-            <tr key={aluno.id}>
-               <td>{aluno.id}</td>
-               <td>{aluno.nome}</td>
-               <td>{aluno.dataNascimento}</td>
-               <td>{aluno.nif}</td>
-               <td>{aluno.responsavel}</td>
-               <td>{aluno.avaliacao}</td>
-               <td>
-                  <Form.Control as="select"
-                  onChange={(e) => this.setState({ avaliacao: e.target.value })}>
-                     <option>Não revela progressos</option>
-                     <option>Revela progressos</option>
-                  </Form.Control>
-                  <br></br>
-                  <Button variant="primary" onClick={() => this.handleAvaliarAluno(aluno.id)}>
-                     Avaliar
-                  </Button>
-               </td>
-            </tr>
-         );
-      });
+      this.state.alunos
+         .filter(aluno => {
+            const nomeMinusculo = aluno.nome.toLowerCase();
+            const filtroMinusculo = this.state.filtroNome.toLowerCase();
+            return nomeMinusculo.startsWith(filtroMinusculo);
+         })
+         .forEach((aluno) => {
+            tabelaBody.push(
+               <tr key={aluno.id}>
+                  <td>{aluno.id}</td>
+                  <td>{aluno.nome}</td>
+                  <td>{aluno.dataNascimento}</td>
+                  <td>{aluno.nif}</td>
+                  <td>{aluno.responsavel}</td>
+                  <td>{aluno.avaliacao}</td>
+                  <td>
+                     <Form.Control as="select"
+                     onChange={(e) => this.setState({ avaliacao: e.target.value })}>
+                        <option>Não revela progressos</option>
+                        <option>Revela progressos</option>
+                     </Form.Control>
+                     <br></br>
+                     <Button variant="primary" onClick={() => this.handleAvaliarAluno(aluno.id)}>
+                        Avaliar
+                     </Button>
+                  </td>
+               </tr>
+            );
+         });
 
       // Constrói a View.
       return(
@@ -110,6 +117,8 @@ class Alunos extends React.Component {
                   placeholder="Procurar por nome do aluno..."
                   aria-label="Procurar por nome do aluno..."
                   aria-describedby="procurarAluno"
+                  value={this.state.filtroNome}
+                  onChange={(e) => this.setState({ filtroNome: e.target.value })}
                />
             </InputGroup> 
             <Table striped bordered hover>

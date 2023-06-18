@@ -15,7 +15,7 @@ const Layout = () => {
       <header>
          <Navbar bg="primary" variant="dark">
             <Container>
-               <Navbar.Brand><Link to="/" style={{ color:"white" }}>Jardim Escola</Link></Navbar.Brand>
+               <Navbar.Brand><Link to="/Inicio" style={{ color:"white" }}>Jardim Escola</Link></Navbar.Brand>
                <Nav className="me-auto">
                   <Nav.Link>
                      <Button variant="outline-primary">
