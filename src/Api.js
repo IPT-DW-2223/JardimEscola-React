@@ -17,6 +17,40 @@ export async function getAlunos() {
 }
 
 /**
+ * Função que recebe os dados dos professores através da API.
+ * @returns Lista de professores.
+ */
+export async function getProfessores() {
+   // Fazer a conexão à API.
+   let dadosProfessores = await fetch("api/Professores/Lista", {credentials: "include"});
+
+   // Verificar se os dados foram recebidos com sucesso.
+   if (!dadosProfessores.ok) {
+      throw new Error("Algo correu mal ao tentar aceder aos dados dos professores. Código HTTP: ", dadosProfessores.state);
+   }
+
+   // Retornar os dados coletados em formato JSON.
+   return await dadosProfessores.json();
+}
+
+/**
+ * Função que recebe os dados dos responsáveis através da API.
+ * @returns Lista de responsáveis.
+ */
+export async function getResponsaveis() {
+   // Fazer a conexão à API.
+   let dadosResponsaveis = await fetch("api/Responsaveis/Lista", {credentials: "include"});
+
+   // Verificar se os dados foram recebidos com sucesso.
+   if (!dadosResponsaveis.ok) {
+      throw new Error("Algo correu mal ao tentar aceder aos dados dos responsáveis. Código HTTP: ", dadosResponsaveis.state);
+   }
+
+   // Retornar os dados coletados em formato JSON.
+   return await dadosResponsaveis.json();
+}
+
+/**
  * Função que envia a avaliação de um aluno para a API.
  * @param {*} alunoId 
  * @param {*} avaliacao 

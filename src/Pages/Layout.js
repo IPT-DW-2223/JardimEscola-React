@@ -24,7 +24,7 @@ const Layout = () => {
                   </Nav.Link>
                   <Nav.Link>
                      <Button variant="outline-primary">
-                        <Link to="/Responsaveis" style={{ color:"white" }}>Responsaveis</Link>
+                        <Link to="/Listas" style={{ color:"white" }}>Listas</Link>
                      </Button>
                   </Nav.Link>
                </Nav>

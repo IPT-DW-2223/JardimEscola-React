@@ -10,7 +10,7 @@ import Alunos from './Pages/Alunos';
 
 import Layout from './Pages/Layout';
 import NoPage from './Pages/NoPage';
-import Responsaveis from './Pages/Responsaveis';
+import Listas from './Pages/Listas';
 import Login from './Pages/Login';
 import Inicio from './Pages/Inicio';
 
@@ -22,7 +22,7 @@ export default function App() {
            <Route index element={<Login />} />
            <Route path="inicio" element={<Inicio />} />
            <Route path="alunos" element={<Alunos />} />
-           <Route path="responsaveis" element={<Responsaveis />} />
+           <Route path="listas" element={<Listas />} />
            <Route path="login" element={<Login />} />
            <Route path="*" element={<NoPage />} />
          </Route>
